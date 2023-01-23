@@ -1,1 +1,19 @@
 import ToDoList from './components/TodoList';
+function　App() {
+    return (
+        <div style={{ margin: "2em"}}>
+            </ToDoList>
+        </div>
+    );
+}
+
+//関数コンポーネントのfunction関数式で書いているらしい
+//TodoListをMargin2emで表示する関数っぽい
+export default App;
+//App関数をimportできるようにした宣言か？
+
+import { useState } from 'react';
+
+const TodoList = () => {
+
+}
