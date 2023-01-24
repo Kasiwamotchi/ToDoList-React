@@ -1,5 +1,5 @@
 import ToDoList from './components/TodoList';
-function　App() {
+function App() {
     return (
         <div style={{ margin: "2em"}}>
             </ToDoList>
