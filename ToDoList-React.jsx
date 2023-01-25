@@ -40,6 +40,11 @@ const TodoList = () => {
         return (
             <div>
                 <h1>ToDo List</h1>
+                <ul>
+                { todos.map((todo, index) => (
+                    <li key={ index }>{ todo.task }</li>
+                ))}
+                </ul>
             </div>
             //HTML要素のh1要素でToDo Listを出力する
 );
