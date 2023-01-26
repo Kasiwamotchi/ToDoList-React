@@ -41,7 +41,13 @@ const TodoList = () => {
         //フック機能ってなんだよ。今回はリアクトのフック機能でsTATE関数をつかっているらしい。Taskはもっている状態をもってくるものらしい。
 
         Add Task : <input value={ task } placeholder="Add New Task" onChange={handleNewTask}/>
-        //変数Add taskを定義。初期値をTaskに設定するInputタグ
+        //変数Add taskを定義。初期値をTaskに設定する。AddNewTaskと書かれたInputタグでイベント発生時にHandleNewTaskを起動する。
+
+        const handleNewTask = (event) => {
+            setTask(event.target.value)
+        }
+        //定数HandleNewTaskを定義。イベント発生時にイベントが発生した場所のValue（おそらくTask）を取得する関数を実行する。
+        //SetTaskとはなんだ。メソッドとはなんだ。関数と同じだが区別して呼んでいるらしい。
 
         const [todos, setTodos] = useState(initialState);
         //定数todos,とsetTodosは引数をinitialStateにしてuseStateという関数を行う
