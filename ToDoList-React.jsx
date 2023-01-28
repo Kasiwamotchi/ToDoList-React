@@ -15,7 +15,7 @@ export default App;
 import { useState } from 'react';
 
 const TodoList = () => {
-//ToDolistを定義するアロー関数を用いた関数コンポーネント
+//ToDoListを定義するアロー関数を用いた関数コンポーネント
         const initialState = [
             //定数initialStateの定義
             {
@@ -51,6 +51,21 @@ const TodoList = () => {
 
         const [todos, setTodos] = useState(initialState);
         //定数todos,とsetTodosは引数をinitialStateにしてuseStateという関数を行う
+
+        <form onSubmit={handleSubmit}>
+            //handleSubmitを変数として送信ボタンを押された時に起動するonSubmit関数を実行する
+        Add Task :<input
+            value={task}
+            placeholder="Add New Task"
+            onChange={handleNewTask}
+        />
+        //AddTaskをtaskという属性値を加え、PlaceholderにAddnewtaskという文字を出し、
+        //Inputタグの中身が変更された時にhandleNewTaskを実行するOnchange関数を実行する
+        <button type="submit">Add</button>
+        //Addと書かれているSubmitボタン
+        </form>
+
+console.log
         return (
             <div>
                 <h1>ToDo List</h1>
