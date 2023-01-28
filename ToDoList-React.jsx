@@ -3,8 +3,7 @@ function App() {
     return (
         <div style={{ margin: "2em"}}>
             </ToDoList>
-        </div>
-    );
+    );</div>
 }
 
 //関数コンポーネントのfunction関数式で書いているらしい cssを入れているようだ
@@ -65,7 +64,20 @@ const TodoList = () => {
         //Addと書かれているSubmitボタン
         </form>
 
-console.log
+    const handleSubmit = (event) => {
+        //定数HandleSubmitをイベントを引数としたアロー関数として宣言する
+        event.preventDefault()
+        //Eventが発生したとき元になったフォームの機能を止める。
+        if(task === '') return
+        //Taskの値が空白の時に処理を止める。
+        setTodos(todos => [...todos,{ task, isCompleted: false}])
+        //変数SetTodosをTask値になにか入力されていたとき。Todosを参照して加える。
+        //...に続く奴はスプレッド構文というもの。
+        setTask('')
+        //SetTaskで空白を表示する
+    }
+
+
         return (
             <div>
                 <h1>ToDo List</h1>
@@ -78,6 +90,7 @@ console.log
                 ))}
                 </ul>
             </div>
-            //todosにmap関数を用いてTodo中のTask要素を引数にしてLi要素を作っている。KeyはReactに使う識別子のようなもの直接的な意味はないらしい？
+            //todosにmap関数を用いてTodo中のTask要素を引数にしてLi要素を作っている。
+            //KeyはReactに使う識別子のようなもの直接的な意味はないらしい？
 );
 }
