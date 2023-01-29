@@ -64,7 +64,7 @@ const TodoList = () => {
         //SetTaskで空白を表示する
     }
 
-        <li key={ index }>{ todo.task } <span onClick={ () => handleRemoveTask(index) >X</span></li>
+        <li key={ index }>{ todo.task } <span onClick={ () => handleUpdateTask(index) >X</span></li>
         //index属性を持つToDoのタスク値をもっている要素をリストとしてだす。
         //Span要素としてxも出す。クリックしたときにIndex要素を引数にhandleRemoveTaskも実行する。
 
@@ -74,8 +74,19 @@ const TodoList = () => {
         }
         //定数handleRemoveTasKはIndex要素を引数にしたアロー関数だ。
         //定数NewTodosはTodoのTodoIndex要素からIndex要素ではないTodoIndexを選択している。
-        //SetTodos関数をNewtodosに実行
+        //SetTodos関数をNewTodosに実行
 
+        const handleUpdateTask = index => {
+            let newTodos = todos.map((todo,todoIndex) => {
+            if(todoIndex  === index){
+                todo.isCompleted = !todo.isCompleted
+        }
+                return todo;
+            })
+            setTodos(newTodos);
+        }
+        //定数handleUpdateTaskはiNDEX要素を引数にしたアロー関数だ
+        //newTodosはTodosIndexを参照して、Todoの真偽を逆にする。
 
 
         return (
@@ -86,12 +97,16 @@ const TodoList = () => {
                 //変数AddTaskをAddNewTaskと書かれたPlaceholder（入力前に出てくる文字）属性を持つインプットタグを持たせる
                 <ul>
                 { todos.map((todo, index) => (
-                    <li key={ index }>{ todo.task }</li>
+                    <li key={ index }  style={ todo.isCompleted === true ? {textDecorationLine: 'line-through'}:{}
+                    >{ todo.task }
+                    <span onClick={ () => handleUpdateTask(index) }>X</span></li>
+                    </li>
                 ))}
                 </ul>
             </div>
             //todosにmap関数を用いてTodo中のTask要素を引数にしてLi要素を作っている。
             //KeyはReactに使う識別子のようなもの直接的な意味はないらしい？
+            //index要素TODOが実行されていると横線をだし、そうでないと空白を出す。
 );
 }
 
