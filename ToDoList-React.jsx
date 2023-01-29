@@ -101,8 +101,10 @@ const TodoList = () => {
                 </form>
                 <ul>
                 { todos.map((todo, index) => (
+                    //todoへIndex要素を引数にMaｐ関数を実行している。
                     <li key={ index }
                     style={{textDecoration: todo.isCompleted ? 'line-through' : 'none',
+                    //Li要素isCompleted関数が事項されている時、横線を引く。そうでないときはなにもしない
                 }}
                     >
                 <input
@@ -110,6 +112,7 @@ const TodoList = () => {
                 checked={todo.isCompleted}
                 onChange={() => handleUpdateTask(index)}
                 />
+                //Inputタグを付ける。チェックボックスタイプ。チェックするとTodoにisCompleted関数を実行する。
             {todo.task}
                     <span onClick={ () => handleUpdateTask(index)}
                     style={{ cursor: 'pointer' }}
@@ -117,6 +120,7 @@ const TodoList = () => {
                     </li>
                 ))}
                 </ul>
+                </div>
 
             //todosにmap関数を用いてTodo中のTask要素を引数にしてLi要素を作っている。
             //KeyはReactに使う識別子のようなもの直接的な意味はないらしい？
