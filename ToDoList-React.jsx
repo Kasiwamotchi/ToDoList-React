@@ -26,9 +26,6 @@ const TodoList = () => {
         //定数Taskの中のSetTaskに対して空白を保持する
         //フック機能ってなんだよ。今回はリアクトのフック機能でsTATE関数をつかっているらしい。Taskはもっている状態をもってくるものらしい。
 
-        Add Task : <input value={ task } placeholder="Add New Task" onChange={handleNewTask}/>
-        //変数Add taskを定義。初期値をTaskに設定する。AddNewTaskと書かれたInputタグでイベント発生時にHandleNewTaskを起動する。
-
         const handleNewTask = (event) => {
             setTask(event.target.value)
         }
@@ -69,11 +66,12 @@ const TodoList = () => {
         //Span要素としてxも出す。クリックしたときにIndex要素を引数にhandleRemoveTaskも実行する。
 
         const handleRemoveTask = index => {
-            const newTodos = [...todos].filter((todo,todoIndex) => todoIndex !== index);
+            const newTodos = [...todos];
+            newTodos.splice(index, 1);
             setTodos(newTodos)
         }
         //定数handleRemoveTasKはIndex要素を引数にしたアロー関数だ。
-        //定数NewTodosはTodoのTodoIndex要素からIndex要素ではないTodoIndexを選択している。
+        //NewTodosはスプライスメソッドをIndex要素の第一に実行する
         //SetTodos関数をNewTodosに実行
 
         const handleUpdateTask = index => {
@@ -93,21 +91,37 @@ const TodoList = () => {
             <div>
                 <h1>ToDo List</h1>
                 //HTML要素のh1要素でToDo Listを出力する
-                Add Task : <input placeholder="Add New Task" />
+                <form onSubmit={handleSubmit}>
+                    //onsubmit属性を持つForm要素をhandleSubmitに指定
+                Add Task :
+                    <input placeholder="Add New Task" />
                 //変数AddTaskをAddNewTaskと書かれたPlaceholder（入力前に出てくる文字）属性を持つインプットタグを持たせる
+                onChange={handleNewTask}
+                //onchange関数が実行された時にhandleNewTaskを実行する
+                </form>
                 <ul>
                 { todos.map((todo, index) => (
-                    <li key={ index }  style={ todo.isCompleted === true ? {textDecorationLine: 'line-through'}:{}
-                    >{ todo.task }
-                    <span onClick={ () => handleUpdateTask(index) }>X</span></li>
+                    <li key={ index }
+                    style={{textDecoration: todo.isCompleted ? 'line-through' : 'none',
+                }}
+                    >
+                <input
+                type="checkbox"
+                checked={todo.isCompleted}
+                onChange={() => handleUpdateTask(index)}
+                />
+            {todo.task}
+                    <span onClick={ () => handleUpdateTask(index)}
+                    style={{ cursor: 'pointer' }}
+                    >X</span>
                     </li>
                 ))}
                 </ul>
-            </div>
+
             //todosにmap関数を用いてTodo中のTask要素を引数にしてLi要素を作っている。
             //KeyはReactに使う識別子のようなもの直接的な意味はないらしい？
             //index要素TODOが実行されていると横線をだし、そうでないと空白を出す。
 );
-}
+};
 
 export default TodoList;
