@@ -1,16 +1,3 @@
-import ToDoList from './components/TodoList';
-function App() {
-    return (
-        <div style={{ margin: "2em"}}>
-            </ToDoList>
-    );</div>
-}
-
-//関数コンポーネントのfunction関数式で書いているらしい cssを入れているようだ
-//TodoListをMargin2emで表示する関数っぽい
-export default App;
-//App関数をimportできるようにした宣言か？
-
 import { useState } from 'react';
 
 const TodoList = () => {
@@ -58,7 +45,7 @@ const TodoList = () => {
             placeholder="Add New Task"
             onChange={handleNewTask}
         />
-        //AddTaskをtaskという属性値を加え、PlaceholderにAddnewtaskという文字を出し、
+        //AddTaskをtaskという属性値を加え、PlaceholderにAdd new taskという文字を出し、
         //Inputタグの中身が変更された時にhandleNewTaskを実行するOnchange関数を実行する
         <button type="submit">Add</button>
         //Addと書かれているSubmitボタン
@@ -77,6 +64,19 @@ const TodoList = () => {
         //SetTaskで空白を表示する
     }
 
+        <li key={ index }>{ todo.task } <span onClick={ () => handleRemoveTask(index) >X</span></li>
+        //index属性を持つToDoのタスク値をもっている要素をリストとしてだす。
+        //Span要素としてxも出す。クリックしたときにIndex要素を引数にhandleRemoveTaskも実行する。
+
+        const handleRemoveTask = index => {
+            const newTodos = [...todos].filter((todo,todoIndex) => todoIndex !== index);
+            setTodos(newTodos)
+        }
+        //定数handleRemoveTasKはIndex要素を引数にしたアロー関数だ。
+        //定数NewTodosはTodoのTodoIndex要素からIndex要素ではないTodoIndexを選択している。
+        //SetTodos関数をNewtodosに実行
+
+
 
         return (
             <div>
@@ -94,3 +94,5 @@ const TodoList = () => {
             //KeyはReactに使う識別子のようなもの直接的な意味はないらしい？
 );
 }
+
+export default TodoList;
